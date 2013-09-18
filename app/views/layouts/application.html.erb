@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+  <title>Time for Food - Home</title>
+
+  <%= stylesheet_link_tag    "main", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+<body>
+
+<div id="top-bg"></div>
+
+<div id="wrapper-outer" class="clearfix">
+
+  <div id="pans"></div>
+  <div class="png"><div id="tea-towel"></div></div>
+
+  <!-- Wrapper Inner -->
+  <div id="wrapper-inner" class="clearfix">
+
+    <div id="top-nav">
+      <ul class="clearfix">
+        <li><%=link_to 'Home', recipes_path %></li>
+        <li><a href="about.htm">About Us</a></li>
+        <li><a href="faq.htm">FAQ</a></li>
+        <li>
+          <% if session[:user_id] == nil %>
+             <%=link_to 'Login', login_url %>
+          <%else%>
+              <%=link_to 'Logout', logout_url %>
+          <%end%>
+        </li>
+      </ul>
+    </div>
+
+    <div id="header">
+      <h1><%= link_to 'Time for Food', recipes_path %></h1>
+    </div>
+
+    <div id="search">
+      <%=form_tag('/search', :method=>'GET', :id=>'searchform') do%>
+          <%= text_field_tag(:s) %>
+
+          <input type="submit" id="searchsubmit" value="" />
+      <%end%>
+
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+      <div class="png">
+        <%=image_tag('top-curve.png', :class=>'top', :width=>'724', :height=>'8')%>
+        </div>
+      <div id="inner-content">
+
+    <%=yield %>
+
+      </div>
+      <%=image_tag('bottom-curve.png', :class=>'curve-bottom', :width=>'724', :height=>'8')%>
+
+    </div>
+    <!-- / Content -->
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+
+
+
+      <%= render('shared/admin_panel') unless !User.find_by_id(session[:user_id]) %>
+
+
+      <div class="png">
+        <%=image_tag('sidebar-top.png', :class=>'top', :width=>'182', :height=>'10')%>
+      </div>
+      <div class="sidebar-inner">
+        <div class="box">
+          <h2>Categories</h2>
+          <ul>
+            <% @categories.each do |category| %>
+                <li><%= link_to category.description, category %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="png">
+        <%=image_tag('sidebar-bottom.png', :class=>'top bottom', :width=>'182', :height=>'10')%>
+      </div>
+
+      <div class="png">
+        <%=image_tag('sidebar-top.png', :class=>'top', :width=>'182', :height=>'10')%>
+      </div>
+      <div class="sidebar-inner">
+      <div class="box">
+          <h2>Hot Recipes</h2>
+          <ul>
+            <% @hot_recipes.each do|recipe|%>
+               <li><%=link_to recipe.title, recipe %></li>
+            <%end%>
+          </ul>
+        </div>
+      </div>
+      <div class="png">
+        <%=image_tag('sidebar-bottom.png', :class=>'top bottom', :width=>'182')%>
+      </div>
+
+      <div id="rss-pane">
+        <div class="feedburner">
+          <h2>Subscribe</h2>
+          <a id="rss-icon" href="#">Subscribe via RSS</a>
+          <p>Click on the icon to add our RSS Feed to your favourite reader and stay up to date with Time for Food!</p>
+        </div>
+        <div class="feedburner">
+          <p class="margin">Want updates by email? Enter your email address below.</p>
+          <form action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=keithdonegan', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+            <input id="feed-email" type="text" name="email" />
+            <input type="hidden" value="keithdonegan" name="uri" />
+            <input type="hidden" name="loc" value="en_US" />
+            <input id="feed-submit" type="submit" value="" />
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- / Sidebar -->
+
+    <div id="footer">
+      <p><a href="http://www.eirestudio.net">Web Design Ireland</a></p>
+    </div>
+
+  </div>
+  <!-- / Wrapper Inner -->
+
+</div>
+
+</body>
+</html>

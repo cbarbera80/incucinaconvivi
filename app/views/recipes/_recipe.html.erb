@@ -1,0 +1,20 @@
+    <div class="post clearfix">
+      <h1><%=link_to recipe.title, recipe%></h1>
+      <div class="author">
+        Written on the <%=recipe.created_at.strftime("%d %b. %Y")%>
+      </div>
+      <div class="thumbnail-large">
+        <%= image_tag(recipe.image, :width=>'300', :height=>'220') %>
+      </div>
+      <div class="text">
+        <p>
+          <%= truncate(strip_tags(recipe.description), :length => 300) %>
+        </p>
+        <div class="meta">
+          <%= render(recipe.categories) %>
+        </div>
+
+        <div class="serves serves-<%=recipe.serving%>">Serves Four</div>
+        <div class="timer"><%=recipe.preparation_time%></div>
+      </div>
+    </div>

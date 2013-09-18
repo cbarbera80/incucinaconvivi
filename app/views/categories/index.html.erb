@@ -1,0 +1,8 @@
+<h1>Categories</h1>
+<% @categories.each do |category| %>
+
+    <%= "Categoria: #{category.description}" %>
+
+    Ricette presenti: <%= link_to category.recipes.count, category %> <br/>
+
+<% end %>

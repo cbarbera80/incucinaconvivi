@@ -1,0 +1,8 @@
+<h1>Welcome</h1>
+It's <%= Time.now %>
+We have <%= pluralize(@total_recipes, "recipe" ) %>
+
+<div>
+  <%=link_to 'Categorie', categories_path %>
+  <%=link_to 'Utenti', users_path %>
+</div>

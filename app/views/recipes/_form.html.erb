@@ -1,0 +1,41 @@
+<%= form_for @recipe,  :html => { :multipart => true } do |f| %>
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% @recipe.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>  <br />
+
+    <%= f.label :description %>
+    <%= f.text_area :description %> <br />
+
+    <%= f.label :directs %>
+    <%= f.text_area :directs %> <br />
+
+    <%= f.label :serving %>
+    <%= f.text_field :serving %>   <br />
+
+    <%= f.label :preparation_time %>
+    <%= f.text_field :preparation_time %> <br />
+
+    <%= f.label :categories %>
+    <%=select_tag 'categories[]',
+                  options_for_select(@categories.map {|s| [s.description, s.id]},
+                                        @recipe.categories.map {|j| j.id}
+                                     ), :multiple => true, :size => 10%>
+
+    <%= f.file_field :image %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+
+
+<% if notice %>
+    <p id="notice" ><%= notice %></p>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<div id="page">
+
+  <div class="post clearfix">
+    <h1>Recipes</h1>
+
+    <div class="entry">
+      <table border="1">
+        <tr>
+            <th>Name</th>
+            <th></th>
+
+          </tr>
+
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= link_to 'Show', user %> | <%= link_to 'Edit', edit_user_path(user) %> | <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %> </td>
+
+              </tr>
+            <% end %>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<%= link_to 'New User', new_user_path %>

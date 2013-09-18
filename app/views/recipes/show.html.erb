@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+  <div class="post clearfix">
+    <h1><%= @recipe.title %></h1>
+
+    <div class="recipe-text">
+      <div class="entry">
+        <div class="thumbnail-large">
+          <%= image_tag(@recipe.image(:medium), :alt => @recipe.title) %>
+        </div>
+
+        <h3>Directions</h3>
+
+        <% if @directions != nil %>
+            <%
+             @directions.count.times do |i| %>
+            <p>
+              <%= "#{i+1}. #{@directions[i]}"  %>
+            </p>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="recipe-meta">
+
+      <div class="ingredients">
+        <h2>Ingredients</h2>
+        <ul>
+          <% @recipe.ingredients.each do |ingredient| %>
+            <li><%=ingredient.description%></li>
+          <%end%>
+        </ul>
+      </div>
+
+      <div class="meta">
+        <%= render(@recipe.categories) %>
+      </div>
+
+      <div class="serves serves-<%=@recipe.serving%>">Serves Four</div>
+      <div class="timer"><%=@recipe.preparation_time%></div>
+
+    </div>
+
+  </div>
+
+
