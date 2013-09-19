@@ -1,5 +1,6 @@
 Incucinaconvivi::Application.routes.draw do
 
+  get "subscriber/register"
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
