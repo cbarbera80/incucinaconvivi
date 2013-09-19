@@ -1,11 +1,13 @@
 Incucinaconvivi::Application.routes.draw do
 
-  get "subscriber/register"
+
+
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
     get 'logout' => :destroy
   end
+
 
   resources :users
 
@@ -14,10 +16,13 @@ Incucinaconvivi::Application.routes.draw do
 
   get "search" => 'recipes#search'
 
+  get "sendNewsletter" => 'subscribers#ship'
+
+
   resources :ingredients
   resources :categories
   resources :recipes
-
+  resources :subscribers
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

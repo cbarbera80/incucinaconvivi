@@ -116,12 +116,12 @@
         </div>
         <div class="feedburner">
           <p class="margin">Want updates by email? Enter your email address below.</p>
-          <form action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=keithdonegan', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
-            <input id="feed-email" type="text" name="email" />
-            <input type="hidden" value="keithdonegan" name="uri" />
-            <input type="hidden" name="loc" value="en_US" />
-            <input id="feed-submit" type="submit" value="" />
-          </form>
+
+          <%=form_tag('/subscribers', :method=>:post) do%>
+              <%= text_field_tag(:email) %>
+              <input id="feed-submit" type="submit" value="" />
+          <%end%>
+
         </div>
       </div>
     </div>

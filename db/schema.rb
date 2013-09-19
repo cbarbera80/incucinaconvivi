@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130919123551) do
+ActiveRecord::Schema.define(version: 20130919140433) do
 
   create_table "categories", force: true do |t|
     t.string   "description"
@@ -52,6 +52,12 @@ ActiveRecord::Schema.define(version: 20130919123551) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.text     "advice"
+  end
+
+  create_table "subscribers", force: true do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

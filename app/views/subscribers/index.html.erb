@@ -1,0 +1,22 @@
+<div id="page">
+
+  <div class="post clearfix">
+    <h1>Users</h1>
+
+    <div class="entry">
+      <table border="1">
+        <tr>
+          <th>Email</th>
+
+        </tr>
+
+        <% @subscribers.each do |subscriber| %>
+            <tr>
+              <td><%= subscriber.email %></td>
+            </tr>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+</div>
