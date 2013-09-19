@@ -7,6 +7,7 @@ gem 'rails', '4.0.0'
 gem 'sqlite3'
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git' #questo per utilizzare la versione più recente presente su git
 gem 'will_paginate', '> 3.0'
+gem 'bootstrap-sass', '2.3.2.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
