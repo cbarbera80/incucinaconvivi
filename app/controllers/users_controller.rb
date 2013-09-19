@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.new(params[:user])
+    @user = User.new(post_params)
 
     respond_to do |format|
       if @user.save
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(post_params)
         format.html { redirect_to(users_url,
                                   :notice => "User #{@user.name} was successfully updated." ) }
         format.xml  { head :ok }
@@ -89,5 +89,9 @@ class UsersController < ApplicationController
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def post_params
+    params.require(:user).permit(:name, :password, :password_confirmation, :email)
   end
 end

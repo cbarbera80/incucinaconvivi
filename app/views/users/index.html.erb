@@ -9,18 +9,19 @@
 <div id="page">
 
   <div class="post clearfix">
-    <h1>Recipes</h1>
+    <h1>Users</h1>
 
     <div class="entry">
       <table border="1">
         <tr>
+            <th>Image</th>
             <th>Name</th>
             <th></th>
-
           </tr>
 
             <% @users.each do |user| %>
               <tr>
+                <td><%= gravatar_for user %></td>
                 <td><%= user.name %></td>
                 <td><%= link_to 'Show', user %> | <%= link_to 'Edit', edit_user_path(user) %> | <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %> </td>
 
