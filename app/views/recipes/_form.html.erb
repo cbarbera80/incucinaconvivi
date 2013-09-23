@@ -34,11 +34,49 @@
     <%=select_tag 'categories[]',
                   options_for_select(@categories.map {|s| [s.description, s.id]},
                                         @recipe.categories.map {|j| j.id}
-                                     ), :multiple => true, :size => 10%>
+                                     ), :multiple => true, :size => 10%>  </br>
 
     <%= f.file_field :image %>
+
+
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+    <% if !@recipe.new_record? %>
+
+    <hr/> <br/>
+    <div id="page">
+      <div class="post clearfix">
+
+        <% if @recipe.ingredients.any? %>
+
+                <h1>Ingredients</h1>
+                <div class="entry">
+                  <table border="1">
+                    <tr>
+                      <th>Ingredient</th>
+                      <th>Actions</th>
+                    </tr>
+                    <% @recipe.ingredients.each do |ingredient| %>
+                        <tr>
+                          <td><%=ingredient.description %></td>
+                          <td> <%=link_to 'Delete', recipe_ingredient_path(@recipe, ingredient), :confirm=>'Are you sure?', :method=>:delete %> </td>
+                        </tr>
+                    <%end%>
+                  </table>
+                </div>
+
+        <%end%>
+
+        <hr/>  <br/>
+         <h2>Add ingredient</h2>
+         <%= render "ingredients/form"%>
+
+      </div>
+    </div>
+    <%end%>
+
+

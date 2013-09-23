@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
 
+
   skip_before_filter :authorize, :only => [:index, :show, :search]
 
 
@@ -47,6 +48,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new.xml
   def new
     @recipe = Recipe.new
+    @ingredient= @recipe.ingredients.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -60,6 +62,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1/edit
   def edit
     @recipe = Recipe.find(params[:id])
+    @new_ingredient = Ingredient.new
   end
 
   # POST /recipes
@@ -73,7 +76,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to(edit_path, :notice => 'Recipe was successfully created.') }
+        format.html { redirect_to(edit_recipe_path(@recipe), :notice => 'Recipe was successfully created.') }
         format.xml  { render :xml => @recipe, :status => :created, :location => @recipe }
       else
         format.html { render :action => "new" }

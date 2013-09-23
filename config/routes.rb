@@ -19,9 +19,12 @@ Incucinaconvivi::Application.routes.draw do
   get "sendNewsletter" => 'subscribers#ship'
 
 
-  resources :ingredients
+
   resources :categories
-  resources :recipes
+
+  resources :recipes  do
+    resources :ingredients
+  end
   resources :subscribers
 
   # The priority is based upon order of creation:
