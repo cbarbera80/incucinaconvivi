@@ -44,6 +44,12 @@ class RecipesController < ApplicationController
     end
   end
 
+  def scale
+    @recipe = Recipe.find(params[:id])
+    @recipe.current_serving=params[:current_serving]
+
+    render 'show'
+  end
   # GET /recipes/new
   # GET /recipes/new.xml
   def new
@@ -85,6 +91,7 @@ class RecipesController < ApplicationController
     end
   end
 
+
   # PUT /recipes/1
   # PUT /recipes/1.xml
   def update
@@ -125,6 +132,6 @@ class RecipesController < ApplicationController
   end
 
   def post_params
-    params.require(:recipe).permit(:title, :description, :serving, :preparation_time, :directs, :categories, :image, :advice)
+    params.require(:recipe).permit(:title, :description, :serving, :preparation_time, :directs, :categories, :image, :advice, :current_serving)
   end
 end

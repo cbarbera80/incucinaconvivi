@@ -14,7 +14,13 @@
 
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_field :description %>  <br />
+
+    <%= f.label :quantity %>  <br />
+    <%= f.text_field :quantity %>   <br />
+
+    <%= f.label :allow_scale %>   <br />
+    <%= f.check_box :allow_scale %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -91,6 +91,6 @@ class IngredientsController < ApplicationController
   end
 
   def post_params
-    params.require(:ingredient).permit(:description, :recipe_id)
+    params.require(:ingredient).permit(:description, :recipe_id, :quantity, :allow_scale)
   end
 end

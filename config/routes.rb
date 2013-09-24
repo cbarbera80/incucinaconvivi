@@ -23,10 +23,15 @@ Incucinaconvivi::Application.routes.draw do
   resources :categories
 
   resources :recipes  do
-    resources :ingredients
+    member do
+      get "scale"
+    end
+
+      resources :ingredients
   end
   resources :subscribers
 
+ # match 'recipes/:id/:scale' => 'recipes#scale', :via => :get
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

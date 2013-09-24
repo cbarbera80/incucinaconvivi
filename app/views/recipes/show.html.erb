@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= params.inspect %>
+
   <div class="post clearfix">
     <h1><%= @recipe.title %></h1>
 
@@ -29,9 +31,31 @@
 
       <div class="ingredients">
         <h2>Ingredients</h2>
+
+
+        <% (1..10).each do |n| %>
+
+            <% if n ==  params[:current_serving].to_i %>
+               <b> <%=n%> </b>
+            <%else%>
+                <%= link_to n, scale_recipe_path(:current_serving => n)  %>
+            <%end%>
+
+
+
+
+        <%end%>
+
+        <%= form_for scale_recipe_path(@recipe),  url: {action: "scale"} do |f| %>
+           <input name="current_serving" type="text">
+         <%end%>
         <ul>
           <% @recipe.ingredients.each do |ingredient| %>
-            <li><%=ingredient.description%></li>
+              <% if ingredient.allow_scale %>
+                <li><%= "#{ingredient.description}: #{ingredient.quantity_scaled(@recipe.current_serving)} gr."%> </li>
+             <%else%>
+                  <li><%= "#{ingredient.description} gr."%> </li>
+             <%end%>
           <%end%>
         </ul>
       </div>
