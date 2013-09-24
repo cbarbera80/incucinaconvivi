@@ -59,12 +59,14 @@
                     <tr>
                       <th>Ingredient</th>
                       <th>Quantity</th>
+                      <th>U.m.</th>
                       <th>Actions</th>
                     </tr>
                     <% @recipe.ingredients.each do |ingredient| %>
                         <tr>
                           <td><%=ingredient.description %></td>
                           <td><%=ingredient.quantity %> </td>
+                          <td><%=ingredient.um %></td>
                           <td> <%=link_to 'Delete', recipe_ingredient_path(@recipe, ingredient), :confirm=>'Are you sure?', :method=>:delete %> </td>
                         </tr>
                     <%end%>

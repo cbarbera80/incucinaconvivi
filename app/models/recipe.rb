@@ -16,7 +16,7 @@ class Recipe < ActiveRecord::Base
   end
 
   validates :title, :directs, :description,   :serving, :preparation_time, :presence => true
-  validates :serving, :inclusion => 1..5
+  validates :serving, :inclusion => 1..10
   validates :title, :uniqueness => true
 
   has_attached_file :image,

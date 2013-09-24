@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= params.inspect %>
-
   <div class="post clearfix">
     <h1><%= @recipe.title %></h1>
 
@@ -52,9 +50,9 @@
         <ul>
           <% @recipe.ingredients.each do |ingredient| %>
               <% if ingredient.allow_scale %>
-                <li><%= "#{ingredient.description}: #{ingredient.quantity_scaled(@recipe.current_serving)} gr."%> </li>
+                <li><%= "#{ingredient.description}: #{ingredient.quantity_scaled(@recipe.current_serving)} #{ingredient.um}"%> </li>
              <%else%>
-                  <li><%= "#{ingredient.description} gr."%> </li>
+                  <li><%= "#{ingredient.description} #{ingredient.um}"%> </li>
              <%end%>
           <%end%>
         </ul>
