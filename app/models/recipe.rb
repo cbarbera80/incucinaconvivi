@@ -1,5 +1,9 @@
 class Recipe < ActiveRecord::Base
 
+  def to_param
+    "#{id} #{title}".parameterize
+  end
+
 
   attr_writer :current_serving
 

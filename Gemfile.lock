@@ -55,6 +55,7 @@ GEM
     execjs (2.0.1)
     faker (1.1.2)
       i18n (~> 0.5)
+    friendly_id (4.0.10)
     hike (1.2.3)
     i18n (0.6.5)
     jbuilder (1.5.1)
@@ -130,6 +131,7 @@ DEPENDENCIES
   bootstrap-sass (= 2.3.2.0)
   coffee-rails (~> 4.0.0)
   faker (= 1.1.2)
+  friendly_id (~> 4.0.0.beta8)
   jbuilder (~> 1.2)
   jquery-rails
   paperclip!
